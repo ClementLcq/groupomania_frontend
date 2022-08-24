@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "font-1";
+  src: url(../assets/fonts/OpenSans-Regular.ttf);
+}
+
+$font-1: "font-1", sans-serif;
+
+$color-1: #FD2D01;
+$color-2: #FFD7D7;
+$color-3: #4E5166;
+$white: rgb(243, 243, 243);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $white;
+  font-family: $font-1;
+  height: 100%;
+  // @include verticalCenter;
+}
+li {
+  list-style-type: none;
+}
+
+$breakpoints :(
+  mobile:599px,
+  tablet: 900px,
+  desktop: 1200px,
+);
+
+@mixin mobile-only {
+  @media screen and (max-width: map-get($breakpoints, mobile)) {
+    @content;
+  }
+};
