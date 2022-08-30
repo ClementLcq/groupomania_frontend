@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import SignInForm from './SignInForm';
 
 const SignUpForm = () => {
     const [formSubmit, setFormSubmit] = useState(false);
@@ -21,7 +22,6 @@ const SignUpForm = () => {
             await axios ({
                 method: 'POST',
                 url:'http://localhost:3001/api/auth/signup',
-                withCredentials: true,
                 data: {
                     email,
                     password
@@ -45,7 +45,7 @@ const SignUpForm = () => {
         <>
         {formSubmit ? (
             <>
-            <SignUpForm />
+            <SignInForm />
             <span></span>
             <h4 className='success'>Enregistrement réussi, veuillez vous connecter</h4>
             </>
