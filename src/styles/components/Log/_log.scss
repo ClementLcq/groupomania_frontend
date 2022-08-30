@@ -6,17 +6,46 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    @include tablet-only {
+      width: 80%;
+    }
     &__container {
       background-color: $color-2;
       border-radius: 18px;
-      width: 30%;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      
+      @include mobile-only {
+        width: 80%;
+      }
+      &__buttons {
+        display: flex;
+        width: 90%;
+        @include tablet-only {
+          flex-direction: column;
+          align-items: center;
+        };
+      }
     }
 
-    .form__submit:hover {
-      background-color: $color-1;
-      color:$white;
-      cursor: pointer;
-      box-shadow: 1px 1px 10px $color-1;
+
+
+    .form__submit {
+      color:$color-1;
+      &:hover {
+        background-color: $color-1;
+        color:$white;
+        cursor: pointer;
+        box-shadow: 1px 1px 10px $color-1;
+      }
+    }
+
+    a {
+      color:$color-1;
     }
   
     h3 {
@@ -56,8 +85,17 @@
     }
     form {
       width: 100%;
-      margin: 10px auto 0;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include tablet-only {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px 10px 10px
+      };
+
 
       input {
         background-color: $color-2;

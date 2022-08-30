@@ -52,17 +52,17 @@ const SignUpForm = () => {
         ) : (
             <form action="" onSubmit={handleRegister} id="sign-up-form">
                 <label htmlFor="email">Email</label>
-                <br/>
                 <input type="text" name="email" id="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
                 <div className="email__error"></div>
                 <br />
                 <label htmlFor="password">Mot de passe</label>
-                <br />
                 <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
                 <div className="password__error"></div>
                 <br />
-                <input type="checkbox" id="terms"/>
-                <label htmlFor="terms">J'accepte les <a href="/" target="_blank" rel="noopener noreferrer">conditions générales</a></label>
+                <div className="form__terms">
+                    <input type="checkbox" id="terms"/>
+                    <label htmlFor="terms">J'accepte les <a href="/" target="_blank" rel="noopener noreferrer">conditions générales</a></label>
+                </div>
                 <div className="terms__error"></div>
                 <br />
                 <input type="submit" value="Valider l'inscription" className='form__submit'/>

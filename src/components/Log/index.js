@@ -19,9 +19,9 @@ const handleModals = (e) => {
     return (
         <div className="connection-form">
             <div className="connection-form__container">
-                <ul>
-                    <li onClick={handleModals} id='signup' className={signUpModal ? "button__active" : null}> S'inscrire </li>                    
-                    <li onClick={handleModals} id='login' className={signInModal ? "button__active" : null}> Se connecter </li>
+                <ul className="connection-form__container__buttons">
+                    <li onClick={handleModals} id='signup' className={signUpModal ? "button__active" : null}> Inscription </li>                    
+                    <li onClick={handleModals} id='login' className={signInModal ? "button__active" : null}> Connection </li>
                 </ul>
                 {signUpModal && <SignUpForm />}
                 {signInModal && <SignInForm />}
