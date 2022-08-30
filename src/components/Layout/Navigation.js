@@ -9,11 +9,9 @@ const Navigation = () => {
                     <li>Accueil</li>
                 </NavLink>
                 <NavLink to="/login" className={(nav) => (nav.isActive ? "__active" : "")}>
-                    <li>Login</li>
+                    <li>Se connecter</li>
                 </NavLink>
-                <NavLink to="/signup" className={(nav) => (nav.isActive ? "__active" : "")}>
-                    <li>Signup</li>
-                </NavLink>
+
             </ul>
        </div>
     );
