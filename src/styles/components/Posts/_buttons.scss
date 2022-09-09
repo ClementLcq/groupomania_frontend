@@ -1,0 +1,49 @@
+/* Bouton icone coeur */
+
+.likeButton  {
+    border-style:none;
+    background-color: $white;
+};
+
+svg.svg-inline--fa.fa-heart {
+    font-size: 30px;
+}
+
+svg.svg-inline--fa.fa-heart.btn-unliked { 
+    color: $color-2;
+    &:hover {
+        color: $color-1;
+    } 
+}
+
+svg.svg-inline--fa.fa-heart.btn-liked {    
+    color: $color-1;
+}
+
+/* Boutons édition */
+.editButton {
+    background-color: $white;
+    color: $color-3;
+    border: 1px solid $color-3;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    &:hover { 
+        background-color: $color-3;
+        color: $white;
+        box-shadow: 1px 1px 5px $color-3;
+    }
+}
+
+.deleteButton {
+    background-color: $white;
+    color: $color-1;
+    border: 1px solid $color-1;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    &:hover {
+        background-color: $color-1;
+        color: $white;
+        box-shadow: 1px 1px 5px $color-1;
+    }
+}
+
