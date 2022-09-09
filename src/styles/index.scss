@@ -5,5 +5,12 @@
 @import "./components/card";
 @import "./components/footer";
 @import "./pages/home";
-@import "./components/Log/log.scss"
-
+@import "./components/Log/log.scss";
+@import "./components/Posts/displayPosts.scss";
+@import "./components/Posts/Post.scss";
+@import "./components/Posts/createPost";
+@import "./pages/trending.scss";
+@import "./utils/mixins";
+@import "./components/Posts/buttons";
+@import "./utils/variables";
+@import "./components/userSettings/userSettings";

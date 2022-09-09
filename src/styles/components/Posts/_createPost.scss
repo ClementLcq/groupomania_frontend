@@ -1,11 +1,82 @@
 .createPost {
-    background-color: $color-2;
+    background-color: $white;
     margin: 0 20px 0 20px;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 1px 1px 20px $color-2;
-    position: fixed;
-    right: 0;
-    height: auto;
-    width: 30%;
+    height: 100%;
+    width: 100%;
+    &__input {
+        cursor: pointer;
+        background-color: $color-2;
+        font-size: 20px;
+        border: 1px solid $white;
+        color: $color-1;
+        border-radius: 15px;
+        height: 30px;
+        width: 30px;
+    }
+    &__options {
+        #description {
+            margin: 20px 0 0 0;
+            width: 100%;
+            padding: 10px;
+            font-family: $font-1;
+            border: 1px solid $color-2;
+            border-radius: 15px 15px 0 0;
+
+        }
+        &__file-input label {
+            width: 100%;
+            margin: 10px 0 10px 0;
+            font-size: 15px;
+            display: block;
+            position: relative;
+            height: 50px;
+            border-radius: 15px;
+            background-color: $white;            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-3;
+            border: 1px solid $color-2;
+            cursor: pointer;
+            &:hover {
+                background-color: $color-2;            
+                box-shadow: 1px 1px 10px $color-2;
+            }
+        }
+        .file {
+            opacity: 0;
+            width: 0.1px;
+            height: 0.1px;
+            position: absolute;
+          }
+        &__submit {
+            background-color: $white;
+            color: $color-3;
+            font-size: 15px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 15px;
+            border: 1px solid $color-3;
+            &:hover {
+                color: $white;
+                background-color: $color-3;            
+                box-shadow: 1px 1px 10px $color-3;
+            }
+        }  
+        
+    }
+    @include tablet-only {
+        position: relative;
+        margin: 0 0 20px 0;
+        width: 50%;
+        text-align: center;
+    }
+    @include mobile-only {
+        width: 100%;
+
+    }
 }
+

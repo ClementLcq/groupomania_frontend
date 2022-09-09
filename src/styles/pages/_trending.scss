@@ -1,6 +1,10 @@
 .trending {
-    display: grid;
-    grid-template-columns: 4fr 2fr;
+    display: flex;
     margin: 0 5% 0 5%;
     position: relative;
+    @include tablet-only {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    };
 }
