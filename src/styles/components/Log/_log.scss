@@ -3,9 +3,11 @@
     margin: 35px auto 0;
     padding: 20px 0;
     user-select: none;
+    min-height: calc(100vh - 100px);
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: baseline;
     @include tablet-only {
       width: 80%;
     }
