@@ -8,7 +8,7 @@ const LogOut = () => {
         <div>
             <Logo />
             <NavigationLogOn />
-            Log out
+            Log Out
             <Footer />
         </div>
     );
