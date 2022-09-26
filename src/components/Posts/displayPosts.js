@@ -7,27 +7,8 @@ import { useEffect } from 'react';
 
 const DisplayPosts = () => {
 
-    const [posts, setPosts] = useState('');
-
-    // useEffect(() => {
-    //     getAllPosts();
-    // }, []);
-
-    // const getAllPosts = () => {
-    //     axios({
-    //         method:"get",
-    //         url:'http://localhost:3001/api/posts',
-    //         headers : {
-    //             'Content-Type': 'application/json'
-   
-    //         }
-    //     })
-    //     .then((res) => {
-    //         const allPosts = res.data.posts.allPosts;
-    //         setPosts(allPosts);
-    //     })
-    //     .catch((err) => console.error(err));
-    // }
+    const [posts, setPosts] = useState([]);
+    const token = localStorage.getItem("token");
 
     const url = "http://localhost:3001/api";
 
@@ -36,9 +17,9 @@ const DisplayPosts = () => {
     }, []);
 
     const getAllPosts = () => {
-        axios.get(`${url}/posts`)
+        axios.get(`${url}/posts`, {headers: {Authorization: `Bearer ${token}`}})
         .then((res) => {
-            const allPosts = res.data.posts;
+            const allPosts = res.data;
             setPosts(allPosts);
         })
         .catch((err) => console.error(err));
@@ -46,7 +27,7 @@ const DisplayPosts = () => {
 
     return (
         <section className='displayPosts'>
-            <Post posts={posts}/>  
+            {posts && <Post posts={posts}/>}   
         </section>
     );
 };

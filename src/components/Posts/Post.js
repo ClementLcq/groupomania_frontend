@@ -7,25 +7,25 @@ import LikeButton from './utils/likeButton';
 const Post = (props) => {
 
     const {posts} = props;
+    // console.log(posts);
 
-    if({posts}.length > 0) { 
+    if(posts.length > 0) { 
 
         return (
-            posts.map((post) => {
-                console.log(post)
+            posts.map((post, index) => {
                 return (
-                    <article className="post" key={post._id}>
+                    <article className="post" key={index}>
                         <div className='post__header'>
                             <h3 className='post__header__author'>{post.userId}</h3>
                             <div className="post__header__date"> 11:01 06/09/2022</div>
                         </div>
-                        <img src="" alt="" className='post__image' key={post.imageUrl}/>
+                        <img src="" alt="" className='post__image'/>
                         <p className='post__description'>
                         {post.description}
                         </p>
                         <div className='post__features'>
                             <div className="post__features__opinion">
-                                <LikeButton key={post.likes} />
+                                <LikeButton/>
                             </div>
                             <div className="post__features__editing">
                                 <button className='editButton'>Modifier</button>
