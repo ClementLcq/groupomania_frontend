@@ -1,4 +1,5 @@
 import React from 'react';
+// import DisplayPosts from './displayPosts';
 import LikeButton from './utils/likeButton';
 // import {useEffect, useState} from "react";
 // import axios from "axios";
@@ -7,7 +8,7 @@ const Post = (props) => {
 
     const {posts} = props;
 
-    if(posts.length > 0) { 
+    if({posts}.length > 0) { 
 
         return (
             posts.map((post) => {
@@ -43,6 +44,11 @@ const Post = (props) => {
                 </article>
             )
         }
+        // return (
+        //     <>
+        //         {DisplayPosts(props)}
+        //     </>
+        // )
 }
 
 // const Post = () => {

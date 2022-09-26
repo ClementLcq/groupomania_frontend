@@ -7,10 +7,11 @@ const SignInForm = () => {
     const [email, setEmail ] = useState('');
     const [password, setPassword] = useState('');
 
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+
     const handleLogin = (e) => {
         e.preventDefault();
-        const emailError = document.querySelector('.email__error');
-        const passwordError = document.querySelector('.password__error');
 
         axios({
             method:"post",
@@ -22,15 +23,16 @@ const SignInForm = () => {
         })
         .then((res) => {
             console.log(res);
-            if (res.data.errors) {
-                emailError.innerHTML = res.data.errors.email;
-                passwordError.innerHTML = res.data.errors.password;
-            } else {
-                window.location = "/trending";
+            // Enregistrer token dans LS
+            window.location = "/trending";
             }
-        }
+        
         )
         .catch((err) => {
+            if (err.data.errors) {
+                setEmailError(err.data.errors.email) ;
+                setPasswordError(err.data.errors.password) ;
+            }
             console.log(err);
         })
     };
@@ -40,12 +42,12 @@ const SignInForm = () => {
         <form action="" onSubmit={handleLogin} id="sign-up-form">
             <label htmlFor="email">Email</label>
             <input type="text" name="email" id="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-            <div className="email__error"></div>
+            {emailError && <span className="error">{emailError}</span>}
             <br/>
             <label htmlFor="password">Mot de passe</label>
             <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} value={password} />
             <br/>
-            <div className="password__error"></div>
+            {passwordError && <span className="error">{passwordError}</span>}
             <br />
             <input className="form__submit" type="submit" value="Se connecter"/>
         </form>

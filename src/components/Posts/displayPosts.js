@@ -7,7 +7,27 @@ import { useEffect } from 'react';
 
 const DisplayPosts = () => {
 
-    const [posts, getPosts] = useState('');
+    const [posts, setPosts] = useState('');
+
+    // useEffect(() => {
+    //     getAllPosts();
+    // }, []);
+
+    // const getAllPosts = () => {
+    //     axios({
+    //         method:"get",
+    //         url:'http://localhost:3001/api/posts',
+    //         headers : {
+    //             'Content-Type': 'application/json'
+   
+    //         }
+    //     })
+    //     .then((res) => {
+    //         const allPosts = res.data.posts.allPosts;
+    //         setPosts(allPosts);
+    //     })
+    //     .catch((err) => console.error(err));
+    // }
 
     const url = "http://localhost:3001/api";
 
@@ -18,8 +38,8 @@ const DisplayPosts = () => {
     const getAllPosts = () => {
         axios.get(`${url}/posts`)
         .then((res) => {
-            const allPosts = res.data.posts.allPosts;
-            getPosts(allPosts);
+            const allPosts = res.data.posts;
+            setPosts(allPosts);
         })
         .catch((err) => console.error(err));
     }
