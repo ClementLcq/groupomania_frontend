@@ -24,6 +24,8 @@ const SignInForm = () => {
         .then((res) => {
             console.log(res);
             window.localStorage.setItem("token", res.data.token);
+            window.localStorage.setItem("userEmail", JSON.stringify(res.data.userEmail));
+
             // Enregistrer token dans LS
             window.location = "/trending";
             }
