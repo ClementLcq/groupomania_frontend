@@ -1,0 +1,6 @@
+.displayPosts {
+    width: 60%;
+    @include tablet-only {
+        width: 100%;
+    }
+}

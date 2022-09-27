@@ -5,7 +5,7 @@
     border-radius: 20px;
     box-shadow: 1px 1px 20px $color-2;
     height: 100%;
-    width: 100%;
+    width: 30%;
     &__input {
         cursor: pointer;
         background-color: $color-2;
@@ -71,7 +71,7 @@
     @include tablet-only {
         position: relative;
         margin: 0 0 20px 0;
-        width: 50%;
+        width: 100%;
         text-align: center;
     }
     @include mobile-only {

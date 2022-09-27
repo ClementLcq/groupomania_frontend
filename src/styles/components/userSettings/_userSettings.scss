@@ -5,5 +5,10 @@
     border-radius: 20px;
     box-shadow: 1px 1px 20px $color-2;
     height: 100%;
-    width: 100%;
+    width: 30%;
+    @include tablet-only {
+        order:1;
+        margin: 20px;
+        width: 100%;
+    }
 }
