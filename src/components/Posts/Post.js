@@ -7,7 +7,8 @@ import LikeButton from './utils/likeButton';
 const Post = (props) => {
 
     const {posts} = props;
-    // console.log(posts);
+    console.log(posts);
+    
 
     if(posts.length > 0) { 
 
@@ -16,10 +17,10 @@ const Post = (props) => {
                 return (
                     <article className="post" key={index}>
                         <div className='post__header'>
-                            <h3 className='post__header__author'>{post.userId}</h3>
-                            <div className="post__header__date"> 11:01 06/09/2022</div>
+                            <h3 className='post__header__author'>{post.userEmail}</h3>
+                            <div className="post__header__date"> {post.time}</div>
                         </div>
-                        <img src="" alt="" className='post__image'/>
+                        <img src={post.imageUrl} alt="" className='post__image'/>
                         <p className='post__description'>
                         {post.description}
                         </p>
@@ -44,45 +45,6 @@ const Post = (props) => {
                 </article>
             )
         }
-        // return (
-        //     <>
-        //         {DisplayPosts(props)}
-        //     </>
-        // )
 }
-
-// const Post = () => {
-//     const url = 'https://localhost:3001/api/posts';
-//     const [post, setPost] = useState([]);
-
-//     useEffect(() => {
-//         axios.get(url).then(res => {
-//         setPost(res.data.post);
-//         })
-//     }, [])
-  
-//     return (
-//             <article className="post">
-//                 <div className='post__header'>
-//                     <h3 className='post__header__author'>Auteur du post</h3>
-//                     <div className="post__header__date"> 11:01 06/09/2022</div>
-//                 </div>
-//                 <img src="./payet.jpg" alt="" className='post__image' />
-//                 <p className='post__description'>
-//                 {post.description}
-//                 </p>
-//                 <div className='post__features'>
-//                     <div className="post__features__opinion">
-//                         <LikeButton />
-//                     </div>
-//                     <div className="post__features__editing">
-//                         <button className='editButton'>Modifier</button>
-//                         <button className='deleteButton'>Supprimer</button>
-//                     </div>
-//                 </div>
-//             </article>
-            
-//     );
-// };
 
 export default Post;
