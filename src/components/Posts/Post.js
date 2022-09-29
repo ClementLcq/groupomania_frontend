@@ -18,7 +18,7 @@ const Post = (props) => {
                     <article className="post" key={index}>
                         <div className='post__header'>
                             <h3 className='post__header__author'>{post.userEmail}</h3>
-                            <div className="post__header__date"> {post.time}</div>
+                            <div className="post__header__date"> {post.createdAt}</div>
                         </div>
                         <img src={post.imageUrl} alt="" className='post__image'/>
                         <p className='post__description'>
