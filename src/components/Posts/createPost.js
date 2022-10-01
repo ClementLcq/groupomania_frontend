@@ -32,7 +32,7 @@ const CreatePost = (props) => {
         formData.append("image", file);
         formData.append("description", description);
 
-        await axios.post("http://localhost:3001/api/posts", formData, {headers: {Authorization: `Bearer ${token}`}}, {body : JSON.stringify(formData)});
+        await axios.post("http://localhost:3001/api/posts", formData, {headers: {Authorization: `Bearer ${token}`}});
         setDescription("");
         setFile(null);
         window.location.reload();
@@ -58,7 +58,7 @@ const CreatePost = (props) => {
                         </textarea>
 
                         <div className="createPost__options__file-input">
-                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.value)} className="file" />
+                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} className="file" />
                             <label htmlFor="file">
                                 Ajouter une image
                                 <p className="file-name"></p>
