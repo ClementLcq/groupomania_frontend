@@ -20,14 +20,14 @@
       justify-content: center;
       align-items: center;
       align-content: center;
-      box-shadow: 1px 1px 10px $color-2;
-      border : 1px solid $color-2;
+      // box-shadow: 1px 1px 10px $color-2;
+      // border : 1px solid $color-2;
 
       .success {
-        background-color: $color-3;
-        border : 2px solid $color-2;
+        background-color: $color-success-light;
+        box-shadow: 1px 1px 5px $color-success-light;
         padding: 20px;
-        color: $color-accent;
+        color: $color-success-dark;
         border-radius: 0px 0px 18px 18px;
         margin-top: 20px;
         font-weight: 400;
