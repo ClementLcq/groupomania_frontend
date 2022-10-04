@@ -33,6 +33,7 @@ const LoginForm = () => {
     };
 
     const [formSubmit, setFormSubmit] = useState(false);
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#=%&])");
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -40,10 +41,9 @@ const LoginForm = () => {
             .required("L'adresse email est requise"),
         password: Yup.string()
             .required("Le mot de passe est requis")
-            .min(8, "Le mot de passe est trop petit, vous devez avoir au moins 6 caractères")
-            .max(16, "Le mot de passe est trop long, vous devez avoir un maximum de 16 caractères")
-            .uppercase(true, "Le mot de passe doit contenir au moins une majuscule")
-            .lowercase(true, "Le mot de passe doit contenir au moins une miniscule"),
+            .min(8, "Le mot de passe est trop petit, vous devez avoir au moins 8 caractères")
+            .max(22, "Le mot de passe est trop long, vous devez avoir un maximum de 22 caractères")
+            .matches(strongRegex, "Votre mot de passe doit contenir au moins un chiffre, une minuscule, une majuscule et un caractère spécial"),
         acceptTOS: Yup.bool().oneOf(
             [true],
             "Vous devez accepter nos conditions générales"
