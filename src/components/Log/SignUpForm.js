@@ -7,7 +7,7 @@ import * as Yup from "yup";
 const SignUpForm = () => {
     
     const handleSubmit = async (
-        { email, password, acceptTOS },
+        { email, password },
         { setFieldError }
     ) => {
         console.log("Success! Call the API Now!");
