@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
+import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
-import SignInForm from './SignInForm';
 
 const Log = ( props ) => {
-const [loginpModal, setLoginpModal] = useState(props.signup);
-const [signInModal, setSignInModal] = useState(props.signin);
+const [signUpModal, setSignUpModal] = useState(props.signup);
+const [loginFormModal, setLoginFormModal] = useState(props.signin);
 
 const handleModals = (e) => {
     if(e.target.id === 'signup') {
-        setSignInModal(false);
-        setLoginpModal(true);
+        setLoginFormModal(false);
+        setSignUpModal(true);
     } else if (e.target.id === 'login') {
-        setSignInModal(true);
-        setLoginpModal(false);
+        setLoginFormModal(true);
+        setSignUpModal(false);
     }
 }
 
@@ -20,11 +20,11 @@ const handleModals = (e) => {
         <div className="connection-form">
             <div className="connection-form__container">
                 <ul className="connection-form__container__buttons">
-                    <li onClick={handleModals} id='signup' className={loginpModal ? "button__active" : null}> Inscription </li>                    
-                    <li onClick={handleModals} id='login' className={signInModal ? "button__active" : null}> Connection </li>
+                    <li onClick={handleModals} id='signup' className={signUpModal ? "button__active" : null}> Inscription </li>                    
+                    <li onClick={handleModals} id='login' className={loginFormModal ? "button__active" : null}> Connection </li>
                 </ul>
-                {loginpModal && <LoginForm />}
-                {signInModal && <SignInForm />}
+                {signUpModal && <SignUpForm />}
+                {loginFormModal && <LoginForm />}
             </div>
         </div>
     );

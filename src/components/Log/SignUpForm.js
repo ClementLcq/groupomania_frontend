@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 
 
-const LoginForm = () => {
+const SignUpForm = () => {
     
     const handleSubmit = async (
         { email, password, acceptTOS },
@@ -33,6 +33,7 @@ const LoginForm = () => {
     };
 
     const [formSubmit, setFormSubmit] = useState(false);
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#=%&])");
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -40,10 +41,9 @@ const LoginForm = () => {
             .required("L'adresse email est requise"),
         password: Yup.string()
             .required("Le mot de passe est requis")
-            .min(8, "Le mot de passe est trop petit, vous devez avoir au moins 6 caractères")
-            .max(16, "Le mot de passe est trop long, vous devez avoir un maximum de 16 caractères")
-            .uppercase(true, "Le mot de passe doit contenir au moins une majuscule")
-            .lowercase(true, "Le mot de passe doit contenir au moins une miniscule"),
+            .min(8, "Le mot de passe est trop petit, vous devez avoir au moins 8 caractères")
+            .max(22, "Le mot de passe est trop long, vous devez avoir un maximum de 22 caractères")
+            .matches(strongRegex, "Votre mot de passe doit contenir au moins un chiffre, une minuscule, une majuscule et un caractère spécial"),
         acceptTOS: Yup.bool().oneOf(
             [true],
             "Vous devez accepter nos conditions générales"
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
     return (
         <>
-        <section>
+        <section className='connection-form__container__section'>
             <Formik
                 initialValues={{
                     email: "",
@@ -84,17 +84,17 @@ const LoginForm = () => {
                             <form action="" onSubmit={handleSubmit} id="sign-up-form">
                                 <label htmlFor="email">Email</label>
                                 <input type="text" name="email" id="email" onChange={handleChange("email")}  onBlur={handleBlur("email")} value={values.email}/>
-                                <div className="email__error">{touched.email && errors.email}</div>
+                                <div className="form__errors">{touched.email && errors.email}</div>
                                 <br />
                                 <label htmlFor="password">Mot de passe</label>
                                 <input type="password" name="password" id="password" onChange={handleChange("password")} onBlur={handleBlur("password")} value={values.password}/>
-                                <div className="password__error">{touched.password && errors.password}</div>
+                                <div className="form__errors">{touched.password && errors.password}</div>
                                 <br />
                                 <div className="form__terms">
                                     <input type="checkbox" id="terms" checked={values.acceptTOS} onChange={handleChange("acceptTOS")}/>
                                     <label htmlFor="terms">J'accepte les <a href="/" target="_blank" rel="noopener noreferrer">conditions générales</a></label>
                                 </div>
-                                <div className="terms__error">{touched.acceptTOS && errors.acceptTOS}</div>
+                                <div className="form__errors">{touched.acceptTOS && errors.acceptTOS}</div>
                                 <br />
                                 <input type="submit" value="Valider l'inscription" className='form__submit'/>
                             </form>
@@ -108,7 +108,7 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default SignUpForm;
 
 
 
