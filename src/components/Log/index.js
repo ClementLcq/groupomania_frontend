@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
 import SignInForm from './SignInForm';
 
 const Log = ( props ) => {
@@ -23,7 +23,7 @@ const handleModals = (e) => {
                     <li onClick={handleModals} id='signup' className={signUpModal ? "button__active" : null}> Inscription </li>                    
                     <li onClick={handleModals} id='login' className={signInModal ? "button__active" : null}> Connection </li>
                 </ul>
-                {signUpModal && <SignUpForm />}
+                {signUpModal && <LoginForm />}
                 {signInModal && <SignInForm />}
             </div>
         </div>
