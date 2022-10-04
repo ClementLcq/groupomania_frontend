@@ -23,6 +23,12 @@
       // box-shadow: 1px 1px 10px $color-2;
       // border : 1px solid $color-2;
 
+      &__section {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
       .success {
         background-color: $color-success-light;
         box-shadow: 1px 1px 5px $color-success-light;
@@ -37,6 +43,16 @@
         width: 100% ;
       }
       
+      // .terms__error {
+      //   color: $color-2;
+      //   padding: 15px 5px 15px 5px;
+      //   background-color: $color-1;
+      //   margin-top: 20px;
+      //   width: 100%;
+      //   border-radius: 18px;
+      //   box-shadow: 1px 1px 10px $color-1;
+      // }
+
       @include mobile-only {
         width: 80%;
       }
@@ -133,6 +149,11 @@
       }
 
       #password {
+        width: 100%;
+      }
+
+      .form__errors {
+        color: $color-1;
         width: 100%;
       }
   
