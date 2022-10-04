@@ -17,8 +17,8 @@ const Post = (props) => {
                 return (
                     <article className="post" key={index}>
                         <div className='post__header'>
-                            <h3 className='post__header__author'>{post.User[0].email}</h3>
-                            <div className="post__header__date"> {post.createdAt}</div>
+                            <h3 className='post__header__author'>{post.User[0].email.split('@')[0].split('.').join(' ')}</h3>
+                            <div className="post__header__date"> {post.createdAt.split('T').join(' ').split('.')[0]}</div>
                         </div>
                         <img src={post.imageUrl} alt="" className='post__image'/>
                         <p className='post__description'>

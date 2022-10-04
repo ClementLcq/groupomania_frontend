@@ -14,6 +14,9 @@
             flex-direction: column;
             justify-content: flex-start;
         }
+        &__author {
+            text-transform: capitalize;
+        }
     }
 
     &__image {
