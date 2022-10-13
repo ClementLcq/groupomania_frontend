@@ -17,6 +17,10 @@ const Post = (props) => {
 
         return (
             posts.map((post, index) => {
+
+                const isPostLikedByUser = post.usersLiked.find(user => user === currentUserId) !== undefined;
+
+
                 return (
                     <article className="post" key={index}>
                         <div className='post__header'>
@@ -30,13 +34,13 @@ const Post = (props) => {
                             <div className='post__features'>
                                 { currentUserId !== post.userId ? (
                                 <div className="post__features__opinion">
-                                    <LikeButton/>
+                                    <LikeButton postIsLiked={isPostLikedByUser}/>
                                 </div>
                                 ) : null}
                                 { currentUserId === post.userId ? (
                                 <div className="post__features__editing">
                                     <ModifyButton />
-                                    {posts && <DeleteButton posts={posts}/>}
+                                    {posts && <DeleteButton postId={post._id}/>}
                                 </div>
                                 ) : null}
                             </div>
