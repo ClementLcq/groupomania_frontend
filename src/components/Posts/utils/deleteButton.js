@@ -1,25 +1,38 @@
-import {React, useState} from 'react';
-// import Post from '../Post';
+import {React} from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 const DeleteButton = (props) => {
     
-    const [post, setPost] = useState();
+    const {posts} = props;
+    console.log(posts);
+    
     const token = localStorage.getItem('token');
+    const currentUserId = JSON.parse(localStorage.getItem('userId'));
 
-    const handleClick = async () => {
-        // try {
-        //     await axios.delete(`http://localhost:3001/api/posts/_id`, {headers: {Authorization: `Bearer ${token}`}});
-        //     window.location.reload();
-        //     setPost();
-        // } catch (error) {
-        //     console.log(error)
-        // }
-        await console.log("ecoute sur bouton ok")
+    const HandleClick = async () => {
+        posts.map((post, index) => {
+            const id = post._id;
+            console.log(id)
+    
+            if (currentUserId === post.userId) {
+                const deletePost = async (post) => {
+                    try {
+                        await axios.delete(`http://localhost:3001/api/posts/${id}`, {headers: {Authorization: `Bearer ${token}`}});
+                        window.location.reload();
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+                deletePost();
+            } else {
+                console.log("Erreur, vous ne pouvez pas supprimer ce post")
+            }
+
+            
+        })
     }
     return (
-        <button onClick={handleClick} className='deleteButton'>Supprimer</button>
+        <button onClick={HandleClick} className='deleteButton'>Supprimer</button>
     );
 }
 

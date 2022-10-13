@@ -9,7 +9,7 @@ import DeleteButton from './utils/deleteButton';
 const Post = (props) => {
 
     const {posts} = props;
-    console.log(posts);
+    // console.log(posts);
     
     if(posts.length > 0) { 
 
@@ -34,7 +34,7 @@ const Post = (props) => {
                                 </div>
                                 <div className="post__features__editing">
                                     <ModifyButton />
-                                    <DeleteButton />                          
+                                    {posts && <DeleteButton posts={posts}/>}
                                 </div>
                             </div>
                         ) : null}  
