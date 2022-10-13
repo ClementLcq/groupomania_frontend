@@ -27,17 +27,20 @@ const Post = (props) => {
                         <p className='post__description'>
                         {post.description}
                         </p>
-                        { currentUserId === post.userId ? (
                             <div className='post__features'>
+                                { currentUserId !== post.userId ? (
                                 <div className="post__features__opinion">
                                     <LikeButton/>
                                 </div>
+                                ) : null}
+                                { currentUserId === post.userId ? (
                                 <div className="post__features__editing">
                                     <ModifyButton />
                                     {posts && <DeleteButton posts={posts}/>}
                                 </div>
+                                ) : null}
                             </div>
-                        ) : null}  
+                          
                     </article>
                 )
             })
