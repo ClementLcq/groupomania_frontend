@@ -29,7 +29,7 @@
 
     &__features {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         &__opinion {
             input {
                 margin: 0 20px 0 0;
