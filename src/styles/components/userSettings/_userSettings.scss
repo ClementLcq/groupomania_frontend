@@ -6,9 +6,7 @@
     box-shadow: 1px 1px 20px $color-2;
     height: 100%;
     width: 30%;
-    &__hello {
-        text-transform: capitalize;
-    }
+
     @include tablet-only {
         order:1;
         margin: 20px;
