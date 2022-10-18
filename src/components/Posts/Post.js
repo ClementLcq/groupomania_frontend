@@ -11,6 +11,10 @@ const Post = (props) => {
     const {posts} = props;
     // console.log(posts);
     
+    const likeButtonClicked = (postModified) => {
+        props.likeButtonClicked(postModified);
+    }
+
     if(posts.length > 0) { 
 
         const currentUserId = JSON.parse(localStorage.getItem('userId'));
@@ -34,7 +38,7 @@ const Post = (props) => {
                             <div className='post__features'>
                                 { currentUserId !== post.userId ? (
                                 <div className="post__features__opinion">
-                                    <LikeButton postIsLiked={isPostLikedByUser}/>
+                                    <LikeButton postIsLiked={isPostLikedByUser} handleLikeButtonClicked={likeButtonClicked}/>
                                 </div>
                                 ) : null}
                                 { currentUserId === post.userId ? (
