@@ -1,8 +1,9 @@
 import React from 'react';
 // import DisplayPosts from './displayPosts';
 import LikeButton from './utils/likeButton';
-import ModifyButton from './utils/modifyButton';
+import ModifyPostModal from './utils/modifyPostModal';
 import DeleteButton from './utils/deleteButton';
+import { useState } from 'react';
 // import {useEffect, useState} from "react";
 // import axios from "axios";
 
@@ -14,6 +15,8 @@ const Post = (props) => {
     const likeButtonClicked = (postModified) => {
         props.likeButtonClicked(postModified);
     }
+
+    const [openModal, setOpenModal] = useState(false);
 
     if(posts.length > 0) { 
 
@@ -38,12 +41,13 @@ const Post = (props) => {
                             <div className='post__features'>
                                 { currentUserId !== post.userId ? (
                                 <div className="post__features__opinion">
-                                    <LikeButton postIsLiked={isPostLikedByUser} handleLikeButtonClicked={likeButtonClicked}/>
+                                    <LikeButton postId={post._id} postIsLiked={isPostLikedByUser} handleLikeButtonClicked={likeButtonClicked}/>
                                 </div>
                                 ) : null}
                                 { currentUserId === post.userId ? (
                                 <div className="post__features__editing">
-                                    <ModifyButton />
+                                    <button className='editButton' onClick={() => setOpenModal(true)}>Modifier</button>
+                                    <ModifyPostModal open={openModal} onClose={() => setOpenModal(false)} postId={post._id}/>
                                     {posts && <DeleteButton postId={post._id}/>}
                                 </div>
                                 ) : null}
