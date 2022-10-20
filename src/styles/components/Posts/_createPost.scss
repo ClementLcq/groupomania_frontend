@@ -24,6 +24,9 @@
             font-family: $font-1;
             border: 1px solid $color-2;
             border-radius: 15px 15px 0 0;
+            @include mobile-only {
+                height: 70%;
+            }
 
         }
         &__file-input label {
@@ -76,7 +79,7 @@
     }
     @include mobile-only {
         width: 100%;
-
+        z-index: -1;
     }
 }
 

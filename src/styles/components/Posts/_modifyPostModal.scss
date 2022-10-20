@@ -43,4 +43,12 @@
 
         }
     }
+
+    @include mobile-only {
+        left: 0;
+        top: 10%;
+        transform: none;
+        height: 80%;
+
+    }
 }
