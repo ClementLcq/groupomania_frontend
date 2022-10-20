@@ -11,20 +11,19 @@ const LikeButton = (props) => {
     const postId = props.postId;
     console.log(postId);
     const token = localStorage.getItem("token");
-    const currentUserId = JSON.parse(localStorage.getItem("userId"));
 
     // const [like, setLike] = useState(props.likes.length)
-    const [isLiked, setIsLiked] = useState(false)
-    console.log(isLiked)
+    // const [isLiked, setIsLiked] = useState(false)
+    // console.log(isLiked)
 
     const handleClick = async () => {
         
-        await axios.post(`http://localhost:3001/api/posts/${postId}/like`, currentUserId, {headers: {Authorization: `Bearer ${token}`}})
+        await axios.put(`http://localhost:3001/api/posts/${postId}/like`, {}, {headers: {Authorization: `Bearer ${token}`}})
         // const postModified = res.data
         .then((res) => {
             const postModified = res.data;
             props.handleLikeButtonClicked(postModified);
-            setIsLiked(true)
+            // setIsLiked(true)
         })
         .catch((err) => console.error(err));
 

@@ -12,6 +12,9 @@ const Post = (props) => {
     const {posts} = props;
     // console.log(posts);
     
+
+    // const [posts, setPosts] = useState(props.posts)
+
     const likeButtonClicked = (postModified) => {
         props.likeButtonClicked(postModified);
     }
