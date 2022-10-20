@@ -1,16 +1,58 @@
 import React, {useState} from 'react';
-// import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
+import { useEffect } from 'react';
 
-const ModifyPostModal = ({open, onClose}, props) => {
+const ModifyPostModal = ({open, onClose, postId} ) => {
 
 
     const [description, setDescription] = useState("");
     const [file, setFile] = useState(null);
+    const [postImage, setPostImage] = useState();
 
-    const handleSubmit = (e) => {
+    const token = localStorage.getItem("token");
+
+    console.log(postId);
+
+    const handleFile = (e) => {
+        setPostImage(URL.createObjectURL(e.target.value[0]));
+        setFile(e.target.file[0]);
+    }
+
+    const url = "http://localhost:3001/api";
+
+    useEffect(()=> {
+        axios.get(`${url}/posts/${postId}`, {headers: {Authorization: `Bearer ${token}`}})
+        .then( res => {
+            const data = res.data;
+            // console.log(data);
+            setDescription(() => data.description)
+            setFile(() => data.imageUrl)
+
+        })
+    }, [])
+
+    // récup de l'userId et userEmail dans le LS
+    const userId = JSON.parse(localStorage.getItem('userId'));
+    const userEmail = JSON.parse(localStorage.getItem('userEmail'));
+
+    const handleFormChange = async (e) => {
         e.preventDefault();
-        props.onPostCreated("Submit et placer le post");
-    };
+        if (description || postImage) {
+            const formData = new FormData();
+            formData.append("userId", userId);
+            formData.append("userEmail", userEmail);
+            formData.append("image", file);
+            formData.append("description", description);
+
+            console.log(formData)
+
+            await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
+            setDescription("");
+            setFile(null);
+            // window.location.reload();
+        }
+        
+    }
 
     if(!open) return null
     
@@ -18,7 +60,7 @@ const ModifyPostModal = ({open, onClose}, props) => {
         <div onClick={onClose} className='overlay'>
             <div onClick={(e) => e.stopPropagation()} className="modalContainer createPost__options">
                 <button onClick={onClose} className="closeButton">X</button>
-                <form action="/posts" method="post" encType="multipart/form-data" className='modalContainer__form'>
+                <form action="/posts" method="post" encType="multipart/form-data" className='modalContainer__form' onSubmit={handleFormChange}>
                         <textarea type="text"
                                 id="description"
                                 required
@@ -29,12 +71,12 @@ const ModifyPostModal = ({open, onClose}, props) => {
                                 placeholder="Qu'avez-vous en tête aujourd'hui ?">
                         </textarea>
                         <div className="createPost__options__file-input">
-                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} className="file" />
+                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => handleFile(e)} className="file" />
                             <label htmlFor="file">
                                 Ajouter une image
                                 <p className="file-name"></p>
                             </label>
-                            <button className="createPost__options__submit" type="submit" onSubmit={handleSubmit} onClick={onClose}>Mettre à jour l'article</button>   
+                            <button className="createPost__options__submit" type="submit" onClick={onClose}>Mettre à jour l'article</button>   
                         </div>
                 </form>
             </div>
@@ -44,62 +86,3 @@ const ModifyPostModal = ({open, onClose}, props) => {
 };
 
 export default ModifyPostModal;
-
-
-
-
-
-// const ModifyButton = (props) => {
-
-//     const [show, setShow] = useState(false);
-//     const handleClose = () => setShow(false);
-//     const handleShow = () => setShow(true);
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     props.onPostCreated("Submit et placer le post");
-    // };
-
-    // const [description, setDescription] = useState("");
-    // const [file, setFile] = useState(null);
-
-//     return (  
-//         <div>      
-//             <button className='editButton' onClick={handleShow}>Modifier</button>
-//             <>
-//             <Modal show={show} onHide={handleClose}>
-//                 <Modal.Header>
-//                 <Modal.Title>Modifier votre article</Modal.Title>
-//                 </Modal.Header>
-//                 <Modal.Body>
-//                 <section className='createPost__options'>
-                    // <form action="/posts" method="post" encType="multipart/form-data">
-                    //     <textarea type="text"
-                    //             id="description"
-                    //             required
-                    //             value={description}
-                    //             onChange={(e) => setDescription(e.target.value)}
-                    //             name="description" 
-                    //             cols="30" rows="10" 
-                    //             placeholder="Qu'avez-vous en tête aujourd'hui ?">
-                    //     </textarea>
-                    //     <div className="createPost__options__file-input">
-                    //         <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} className="file" />
-                    //         <label htmlFor="file">
-                    //             Ajouter une image
-                    //             <p className="file-name"></p>
-                    //         </label>
-                    //     </div>
-                        
-                    // </form>
-//                 </section>
-//                 </Modal.Body>
-//                 <button className="createPost__options__submit" onClick={handleClose}>Fermer</button>
-                // <button className="createPost__options__submit" type="submit" onSubmit={handleSubmit} onClick={handleClose}>Mettre à jour l'article</button>
-//             </Modal>
-//             </>
-//         </div>       
-//     );
-// };
-
-// export default ModifyButton;
