@@ -21,6 +21,8 @@ const Post = (props) => {
     if(posts.length > 0) { 
 
         const currentUserId = JSON.parse(localStorage.getItem('userId'));
+        const isAdmin = localStorage.getItem('isAdmin');
+        console.log(isAdmin)
 
         return (
             posts.map((post, index) => {
@@ -44,7 +46,7 @@ const Post = (props) => {
                                     <LikeButton postId={post._id} postIsLiked={isPostLikedByUser} handleLikeButtonClicked={likeButtonClicked}/>
                                 </div>
                                 ) : null}
-                                { currentUserId === post.userId ? (
+                                { currentUserId === post.userId || isAdmin === "true" ? (
                                 <div className="post__features__editing">
                                     <button className='editButton' onClick={() => setOpenModal(true)}>Modifier</button>
                                     <ModifyPostModal open={openModal} onClose={() => setOpenModal(false)} postId={post._id}/>
