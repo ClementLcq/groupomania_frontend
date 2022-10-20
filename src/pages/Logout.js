@@ -9,6 +9,8 @@ const LogOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userEmail');
         localStorage.removeItem('userId');
+        localStorage.removeItem('isAdmin');
+
         window.location = "/";
     }
 

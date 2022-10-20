@@ -27,6 +27,7 @@ const LoginForm = () => {
                 window.localStorage.setItem("token", res.data.token);
                 window.localStorage.setItem("userEmail", JSON.stringify(res.data.userEmail));
                 window.localStorage.setItem("userId", JSON.stringify(res.data.userId));
+                window.localStorage.setItem("isAdmin", res.data.isAdmin);
     
     
                 // Enregistrer token dans LS
