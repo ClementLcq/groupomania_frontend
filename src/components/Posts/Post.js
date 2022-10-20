@@ -2,7 +2,7 @@ import React from 'react';
 // import DisplayPosts from './displayPosts';
 import LikeButton from './utils/likeButton';
 import ModifyPostModal from './utils/modifyPostModal';
-import DeleteButton from './utils/deleteButton';
+import DeletePostModal from './utils/deletePostModal';
 import { useState } from 'react';
 // import {useEffect, useState} from "react";
 // import axios from "axios";
@@ -16,7 +16,8 @@ const Post = (props) => {
         props.likeButtonClicked(postModified);
     }
 
-    const [openModal, setOpenModal] = useState(false);
+    const [openModifyModal, setOpenModifyModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     if(posts.length > 0) { 
 
@@ -48,9 +49,10 @@ const Post = (props) => {
                                 ) : null}
                                 { currentUserId === post.userId || isAdmin === "true" ? (
                                 <div className="post__features__editing">
-                                    <button className='editButton' onClick={() => setOpenModal(true)}>Modifier</button>
-                                    <ModifyPostModal open={openModal} onClose={() => setOpenModal(false)} postId={post._id}/>
-                                    {posts && <DeleteButton postId={post._id}/>}
+                                    <button className='editButton' onClick={() => setOpenModifyModal(true)}>Modifier</button>
+                                    <ModifyPostModal open={openModifyModal} onClose={() => setOpenModifyModal(false)} postId={post._id}/>
+                                    <button onClick={() => setOpenDeleteModal(true)} className='deleteButton'>Supprimer</button>
+                                    <DeletePostModal open={openDeleteModal} onClose={() => setOpenDeleteModal(false)} postId={post._id}/>
                                 </div>
                                 ) : null}
                             </div>
