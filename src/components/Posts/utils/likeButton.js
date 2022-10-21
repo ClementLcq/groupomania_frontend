@@ -7,14 +7,17 @@ import { useState, useEffect } from 'react';
 
 const LikeButton = (props) => {
 
-    const postIsLiked = props.postIsLiked;
-    const postId = props.postId;
-    console.log(postId);
     const token = localStorage.getItem("token");
 
-    // const [like, setLike] = useState(props.likes.length)
-    // const [isLiked, setIsLiked] = useState(false)
-    // console.log(isLiked)
+    const [postId, setPostId] = useState(props.postId)
+    useEffect(() => {
+        setPostId(props.postId)
+    }, [props.postId])
+
+    const [postIsLiked, setPostIsLiked] = useState(props.postIsLiked)
+    useEffect(() => {
+        setPostIsLiked(props.postIsLiked)
+    }, [props.postIsLiked])
 
     const handleClick = async () => {
         
@@ -23,7 +26,8 @@ const LikeButton = (props) => {
         .then((res) => {
             const postModified = res.data;
             props.handleLikeButtonClicked(postModified);
-            // setIsLiked(true)
+            setPostIsLiked(!postIsLiked);
+            // postIsLiked(true)
         })
         .catch((err) => console.error(err));
 
