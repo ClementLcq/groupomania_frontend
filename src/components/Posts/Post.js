@@ -4,16 +4,17 @@ import LikeButton from './utils/likeButton';
 import ModifyPostModal from './utils/modifyPostModal';
 import DeletePostModal from './utils/deletePostModal';
 import { useState } from 'react';
+import { useEffect } from 'react';
 // import {useEffect, useState} from "react";
 // import axios from "axios";
 
 const Post = (props) => {
 
-    const {posts} = props;
-    // console.log(posts);
-    
+    const [posts, setPosts] = useState(props.posts)
 
-    // const [posts, setPosts] = useState(props.posts)
+    useEffect(() => {
+        setPosts(props.posts)
+    }, [props.posts])
 
     const likeButtonClicked = (postModified) => {
         props.likeButtonClicked(postModified);
@@ -22,7 +23,7 @@ const Post = (props) => {
     const [openModifyModal, setOpenModifyModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-    if(posts.length > 0) { 
+    if(posts && posts.length > 0) { 
 
         const currentUserId = JSON.parse(localStorage.getItem('userId'));
         const isAdmin = localStorage.getItem('isAdmin');
