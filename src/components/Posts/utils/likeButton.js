@@ -22,12 +22,10 @@ const LikeButton = (props) => {
     const handleClick = async () => {
         
         await axios.put(`http://localhost:3001/api/posts/${postId}/like`, {}, {headers: {Authorization: `Bearer ${token}`}})
-        // const postModified = res.data
         .then((res) => {
             const postModified = res.data;
             props.handleLikeButtonClicked(postModified);
             setPostIsLiked(!postIsLiked);
-            // postIsLiked(true)
         })
         .catch((err) => console.error(err));
 
