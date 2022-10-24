@@ -1,7 +1,14 @@
-import {React} from 'react';
+import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 
-const DeletePostModal = ({open, onClose, postId}) => {
+const DeletePostModal = (props) => {
+        const onClose = props.onClose;
+        const open = props.open;
+        
+        const [postId, setPostId] = useState(props.postId)
+        useEffect(() => {
+            setPostId(props.postId)
+        }, [props.postId])
 
         const deletePost = async () => { 
                     try {
