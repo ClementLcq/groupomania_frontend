@@ -8,7 +8,10 @@ import UserSettings from '../components/userSettings/userSettings';
 import { useState } from 'react';
 
 const Trending = () => {
-    const handlePostCreated = (postCreated) => {console.log("post created");setNewPostCreated(postCreated)};
+    const handlePostCreated = (postCreated) => {
+        console.log("post created");
+        setNewPostCreated(postCreated)
+    };
     const [newPostCreated, setNewPostCreated] = useState(null);
 
     return (
