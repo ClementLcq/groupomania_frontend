@@ -1,9 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-// import PostDataService from "../../services/PostService";
 import axios from 'axios';
-// import { useForm } from "react-hook-form"
 
 
 const CreatePost = (props) => {
@@ -12,10 +10,10 @@ const CreatePost = (props) => {
         setShowCreateOptions(!showCreateOptions);
         // newPost();
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.onPostCreated("Submit et placer le post");
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     props.onPostCreated("Submit et placer le post");
+    // };
 
     const [description, setDescription] = useState("");
     const [file, setFile] = useState(null);
@@ -65,7 +63,7 @@ const CreatePost = (props) => {
                             </label>
                         </div>
 
-                        <button className="createPost__options__submit" type="submit" onSubmit={handleSubmit}>Publier</button>
+                        <button className="createPost__options__submit" type="submit" >Publier</button>
                     
                     </form>
                 </section>
