@@ -56,15 +56,12 @@ const Post = (props) => {
                                 ) : null}
                                 { currentUserId === post.userId || isAdmin === "true" ? (
                                 <div className="post__features__editing">
-                                    <button className='editButton' onClick={() => {setOpenModifyModal(true); setPostIdTModify(post._id)}}>Modifier</button>
-                                    
+                                    <button className='editButton' onClick={() => {setOpenModifyModal(true); setPostIdTModify(post._id)}}>Modifier</button>   
                                     <button onClick={() => {setOpenDeleteModal(true); setPostIdToDelete(post._id)}} className='deleteButton'>Supprimer</button>
                                 </div>
                                 ) : null}
                             </div>
-                          
                     </article>
-
             )})
         }
 

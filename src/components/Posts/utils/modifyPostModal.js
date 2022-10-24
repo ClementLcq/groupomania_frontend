@@ -5,39 +5,62 @@ import { useEffect } from 'react';
 const ModifyPostModal = ({open, onClose, postId} ) => {
 
 
+    const [post, setPost] = useState({});
     const [description, setDescription] = useState("");
     const [file, setFile] = useState(null);
-    const [postImage, setPostImage] = useState();
+    // const [postImage, setPostImage] = useState();
 
     const token = localStorage.getItem("token");
 
-    console.log(postId);
+    // console.log(postId);
 
-    const handleFile = (e) => {
-        setPostImage(URL.createObjectURL(e.target.value[0]));
-        setFile(e.target.file[0]);
-    }
+    // const handleFile = (e) => {
+    //     setPostImage(URL.createObjectURL(e.target.value[0]));
+    //     setFile(e.target.file[0]);
+    // }
 
     const url = "http://localhost:3001/api";
 
-    useEffect(()=> {
-        axios.get(`${url}/posts/${postId}`, {headers: {Authorization: `Bearer ${token}`}})
-        .then( res => {
-            const data = res.data;
-            // console.log(data);
-            setDescription(() => data.description)
-            setFile(() => data.imageUrl)
+    useEffect(() => {
+        const getPost = async () => {
+            const currentPostId = postId;
+            const res = await axios.get(`${url}/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}})
+            setPost(res.data);
+            setFile(res.data.image);
+            setDescription(res.data.description);
+        };
+        getPost();
+    }, [postId, token])
 
-        })
-    }, [])
+    // useEffect(()=> {
+        // axios.get(`${url}/posts/${postId}`, {headers: {Authorization: `Bearer ${token}`}})
+    //     .then( res => {
+    //         const data = res.data;
+    //         // console.log(data);
+    //         setDescription(() => data.description)
+    //         setFile(() => data.imageUrl)
+
+    //     })
+    // }, [])
 
     // récup de l'userId et userEmail dans le LS
     const userId = JSON.parse(localStorage.getItem('userId'));
     const userEmail = JSON.parse(localStorage.getItem('userEmail'));
 
+    // const handleFormChange = async (e) => {
+    //     const newFile = file ? file : "";
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append("userId", userId);
+    //     formData.append("image", newFile);
+    //     formData.append("description", description);
+    //     await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
+    //     window.location.reload();
+    // };
+
     const handleFormChange = async (e) => {
         e.preventDefault();
-        if (description || postImage) {
+        if (description || file) {
             const formData = new FormData();
             formData.append("userId", userId);
             formData.append("userEmail", userEmail);
@@ -49,7 +72,7 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
             await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
             setDescription("");
             setFile(null);
-            // window.location.reload();
+            window.location.reload();
         }
         
     }
@@ -71,7 +94,7 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
                                 placeholder="Qu'avez-vous en tête aujourd'hui ?">
                         </textarea>
                         <div className="createPost__options__file-input">
-                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => handleFile(e)} className="file" />
+                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} className="file" />
                             <label htmlFor="file">
                                 Ajouter une image
                                 <p className="file-name"></p>
