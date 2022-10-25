@@ -2,7 +2,7 @@
   
 **FRONTEND**
 
-**1. Allez sur le dossier "Groupomania" sur votre ordinateur que vous avez créés pour le backend**  
+**1. Allez sur le dossier "Groupomania" sur votre ordinateur que vous avez créé pour le backend**  
 
 - créer dedans un second dossier appelé "frontend"  
 - y cloner le repository du frontend à l'aide de votre CLI et de cette commande :  
