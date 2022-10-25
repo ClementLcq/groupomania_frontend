@@ -3,24 +3,25 @@ import axios from 'axios';
 
 const ModifyPostModal = ({open, onClose, postId} ) => {
 
-    const [post, setPost] = useState({});
+    const [, setPost] = useState({});
     const [description, setDescription] = useState("");
     const [file, setFile] = useState(null);
 
     const token = localStorage.getItem("token");
 
-    const getPost = async () => {
-        const currentPostId = postId;
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}})
-        setPost(res.data);
-        setFile(res.data.image);
-        setDescription(res.data.description);
-    }
+    
 
     useEffect(() => {  
+        const getPost = async () => {
+            const currentPostId = postId;
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}})
+            setPost(res.data);
+            setFile(res.data.image);
+            setDescription(res.data.description);
+        }
         if(postId)
         getPost();
-    }, [postId, token])
+    }, [setPost, postId, token])
 
     const userId = JSON.parse(localStorage.getItem('userId'));
 
