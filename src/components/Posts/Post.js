@@ -18,7 +18,6 @@ const Post = (props) => {
     const [openModifyModal, setOpenModifyModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-
     useEffect(() => {
         setPosts(props.posts)
     }, [props.posts])
@@ -27,14 +26,12 @@ const Post = (props) => {
         props.likeButtonClicked(postModified);
     }
 
-
         return (
             <>
             {posts && posts.map((post, index) => { 
                 
                 const postIsLikedByUser = post.usersLiked.find(user => user === currentUserId) !== undefined;
                 return (
-
 
                     <article className="post" key={index}>
                         <div className='post__header'>
