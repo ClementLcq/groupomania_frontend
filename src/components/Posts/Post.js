@@ -46,11 +46,9 @@ const Post = (props) => {
                         {post.description}
                         </p>
                             <div className='post__features'>
-                                { currentUserId !== post.userId ? (
                                 <div className="post__features__opinion">
                                     <LikeButton postId={post._id} postIsLiked={postIsLikedByUser} handleLikeButtonClicked={likeButtonClicked}/>
                                 </div>
-                                ) : null}
                                 { currentUserId === post.userId || isAdmin === "true" ? (
                                 <div className="post__features__editing">
                                     <button className='editButton' onClick={() => {setOpenModifyModal(true); setPostIdTModify(post._id)}}>Modifier</button>   

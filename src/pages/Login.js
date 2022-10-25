@@ -1,29 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Footer from '../components/Layout/Footer';
 import Logo from '../components/Layout/Logo';
 import Navigation from '../components/Layout/Navigation';
 import Log from '../components/Log';
-import { UidContext } from '../components/AppContext';
-import Trending from './Trending';
 
-const Login = () => {
-    const uid = useContext(UidContext);
-    
+const Login = () => {    
     return (
-        <div className='log-page'>
-            {uid ? (
-                <Trending />
-            ) : (
-            <div>
+        <div className='log-page'>  
                 <Logo />
                 <Navigation />
                 <div className="log-container">
                     <Log signin={true} signup={false} />
                 </div>
                 <Footer />
-            </div>
-            )}
-            
         </div>
     );
 };
