@@ -47,9 +47,9 @@
 
     @include mobile-only {
         left: 0;
-        top: 10%;
+        top: 20%;
         transform: none;
-        height: 80%;
+        height: auto;
 
     }
 }
