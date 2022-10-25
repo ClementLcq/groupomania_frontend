@@ -18,7 +18,6 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/trending" element={ userId ? <Trending /> : <Login />} />
         <Route path="/logout" element={<LogOut />} />
-        {/* path="*" fonctionne si jamais l'URL ne correspond à rien de déclarer */}
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
