@@ -8,11 +8,7 @@ import UserSettings from '../components/userSettings/userSettings';
 import { useState } from 'react';
 
 const Trending = () => {
-    const handlePostCreated = (postCreated) => {
-        console.log("post created");
-        setNewPostCreated(postCreated)
-    };
-    const [newPostCreated, setNewPostCreated] = useState(null);
+    const [posts, setPosts] = useState([])
 
     return (
         <div>
@@ -20,8 +16,8 @@ const Trending = () => {
             <NavigationLogOn />
             <section className='trending'>
                 <UserSettings />
-                <DisplayPosts newPostCreated={newPostCreated} />
-                <CreatePost onPostCreated={handlePostCreated} />
+                <DisplayPosts posts={posts} setPosts={setPosts} />
+                <CreatePost />
             </section>
             <Footer />
         </div>
