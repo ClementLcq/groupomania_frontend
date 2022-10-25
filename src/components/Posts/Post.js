@@ -65,7 +65,7 @@ const Post = (props) => {
         }
 
         {
-            (!posts || (posts && posts.length === 0) && (
+            ((!posts || (posts && posts.length === 0)) && (
                 <article className="post">
                     <p className='post__description'>
                         Pas de post pour le moment
