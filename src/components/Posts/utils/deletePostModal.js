@@ -14,7 +14,7 @@ const DeletePostModal = (props) => {
                     try {
                         const currentPostId = postId;
                         const token = localStorage.getItem('token');
-                        await axios.delete(`http://localhost:3001/api/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}});
+                        await axios.delete(`${process.env.REACT_APP_API_URL}/api/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}});
                         alert("Votre post a bien été supprimé");
                         window.location.reload();
                     } catch (error) {

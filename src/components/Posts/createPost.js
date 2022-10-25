@@ -30,7 +30,7 @@ const CreatePost = (props) => {
         formData.append("image", file);
         formData.append("description", description);
 
-        await axios.post("http://localhost:3001/api/posts", formData, {headers: {Authorization: `Bearer ${token}`}});
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/posts`, formData, {headers: {Authorization: `Bearer ${token}`}});
         setDescription("");
         setFile(null);
         window.location.reload();

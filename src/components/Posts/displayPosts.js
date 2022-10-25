@@ -1,6 +1,5 @@
 import React from 'react';
 import Post from './Post';
-// import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -10,14 +9,12 @@ const DisplayPosts = () => {
     const [posts, setPosts] = useState([]);
     const token = localStorage.getItem("token");
 
-    const url = "http://localhost:3001/api";
-
     useEffect(() => {
         getAllPosts();
     }, []);
 
     const getAllPosts = () => {
-        axios.get(`${url}/posts`, {headers: {Authorization: `Bearer ${token}`}})
+        axios.get(`${process.env.REACT_APP_API_URL}/api/posts`, {headers: {Authorization: `Bearer ${token}`}})
         .then((res) => {
             const allPosts = res.data;
             setPosts(allPosts);

@@ -19,12 +19,10 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
     //     setFile(e.target.file[0]);
     // }
 
-    const url = "http://localhost:3001/api";
-
     useEffect(() => {
         const getPost = async () => {
             const currentPostId = postId;
-            const res = await axios.get(`${url}/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}})
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/posts/${currentPostId}`, {headers: {Authorization: `Bearer ${token}`}})
             setPost(res.data);
             setFile(res.data.image);
             setDescription(res.data.description);
@@ -69,7 +67,7 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
 
             console.log(formData)
 
-            await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
+            await axios.put(`${process.env.REACT_APP_API_URL}api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
             setDescription("");
             setFile(null);
             window.location.reload();

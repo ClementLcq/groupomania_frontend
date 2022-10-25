@@ -1,14 +1,10 @@
 import React, { useState} from 'react';
 import axios from 'axios';
-// import { Formik } from 'formik';
-// import * as Yup from "yup";
-// import env from 'react-dotenv';
 
 const LoginForm = () => {
         const [email, setEmail ] = useState('');
         const [password, setPassword] = useState('');
-    
-        // const [emailError, setEmailError] = useState('');
+        
         const [passwordError, setPasswordError] = useState('');
     
         const handleLogin = (e) => {
@@ -16,7 +12,7 @@ const LoginForm = () => {
     
             axios({
                 method:"post",
-                url:'http://localhost:3001/api/auth/login',
+                url:`${process.env.REACT_APP_API_URL}/api/auth/login`,
                 data: {
                     email,
                     password,
@@ -29,8 +25,6 @@ const LoginForm = () => {
                 window.localStorage.setItem("userId", JSON.stringify(res.data.userId));
                 window.localStorage.setItem("isAdmin", res.data.isAdmin);
     
-    
-                // Enregistrer token dans LS
                 window.location = "/trending";
                 }
             

@@ -1,12 +1,9 @@
 import React from 'react';
-// import DisplayPosts from './displayPosts';
 import LikeButton from './utils/likeButton';
 import ModifyPostModal from './utils/modifyPostModal';
 import DeletePostModal from './utils/deletePostModal';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import {useEffect, useState} from "react";
-// import axios from "axios";
 
 const Post = (props) => {
 
