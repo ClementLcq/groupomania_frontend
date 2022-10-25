@@ -76,7 +76,6 @@ const SignUpForm = () => {
                         <>
                         {formSubmit ? (
                             <>
-                            {/* <SignInForm /> */}
                             <span></span>
                             <h4 className='success'>Super, votre compte a été créé.<br/> Rendez-vous sur l'onglet connection pour accéder au contenu de notre réseau.</h4>
                             </>
