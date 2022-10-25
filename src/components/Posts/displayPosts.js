@@ -8,18 +8,18 @@ const DisplayPosts = ({posts, setPosts}) => {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
+        const getAllPosts = () => {
+            axios.get(`${process.env.REACT_APP_API_URL}/api/posts`, {headers: {Authorization: `Bearer ${token}`}})
+            .then((res) => {
+                const allPosts = res.data;
+                setPosts(allPosts);
+            })
+            .catch((err) => console.error(err));
+        }
         getAllPosts();
-    }, []);
+    }, [setPosts, token]);
 
-    const getAllPosts = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/posts`, {headers: {Authorization: `Bearer ${token}`}})
-        .then((res) => {
-            const allPosts = res.data;
-            setPosts(allPosts);
-        })
-        .catch((err) => console.error(err));
-    }
-
+    
     const likeButtonClicked= (postModified) => {
         const indexPostToModify = posts.findIndex(post => post._id === postModified._id)
         let newPost = posts;
