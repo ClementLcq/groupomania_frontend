@@ -1,12 +1,10 @@
 import React from 'react';
 import Post from './Post';
 import axios from 'axios';
-import { useState } from 'react';
 import { useEffect } from 'react';
 
-const DisplayPosts = () => {
+const DisplayPosts = ({posts, setPosts}) => {
 
-    const [posts, setPosts] = useState([]);
     const token = localStorage.getItem("token");
 
     useEffect(() => {
