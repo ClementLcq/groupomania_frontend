@@ -1,11 +1,13 @@
 import React from 'react';
 import Logo from '../components/Layout/Logo';
+import NavigationLogOn from '../components/Layout/LogOn/navigation.LogOn';
 
 const Error404 = () => {
     return (
         <div>
             <Logo />
-            <p>Page non trouvée, veuillez retourner à l'accueil</p>
+            <NavigationLogOn />
+            <p className='error404'>Page non trouvée, veuillez retourner sur la page des posts</p>
         </div>
     );
 };
