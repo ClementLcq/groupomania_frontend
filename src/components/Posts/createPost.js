@@ -1,22 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 
-const CreatePost = (props) => {
+const CreatePost = () => {
     const [showCreateOptions, setShowCreateOptions] = useState(false);
     const handleClick = () => {
         setShowCreateOptions(!showCreateOptions);
-        // newPost();
     };
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     props.onPostCreated("Submit et placer le post");
-    // };
 
     const [description, setDescription] = useState("");
-    const [file, setFile] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
 
     const handleFormSubmit = async (e) => {
 
@@ -27,13 +21,11 @@ const CreatePost = (props) => {
         const formData = new FormData();
         formData.append("userId", userId);
         formData.append("userEmail", userEmail);
-        formData.append("image", file);
+        formData.append("image", imageUrl);
         formData.append("description", description);
 
         await axios.post(`${process.env.REACT_APP_API_URL}/api/posts`, formData, {headers: {Authorization: `Bearer ${token}`}});
-        setDescription("");
-        setFile(null);
-        window.location.reload();
+        document.location.reload();
     }
     
     return (
@@ -56,7 +48,7 @@ const CreatePost = (props) => {
                         </textarea>
 
                         <div className="createPost__options__file-input">
-                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} className="file" />
+                            <input type="file" id="file" accept=".png, .jpeg, .jpg" onChange={(e) => setImageUrl(e.target.files[0])} className="file" />
                             <label htmlFor="file">
                                 Ajouter une image
                                 <p className="file-name"></p>
@@ -71,8 +63,5 @@ const CreatePost = (props) => {
         </section>
     );
 };
-
-CreatePost.defaultProps = {onPostCreated : null}; 
-CreatePost.propTypes = {onPostCreated: PropTypes.func};
 
 export default CreatePost;
