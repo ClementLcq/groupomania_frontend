@@ -45,35 +45,35 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
     const userId = JSON.parse(localStorage.getItem('userId'));
     const userEmail = JSON.parse(localStorage.getItem('userEmail'));
 
-    // const handleFormChange = async (e) => {
-    //     const newFile = file ? file : "";
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append("userId", userId);
-    //     formData.append("image", newFile);
-    //     formData.append("description", description);
-    //     await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
-    //     window.location.reload();
-    // };
-
     const handleFormChange = async (e) => {
+        const newFile = file ? file : "";
         e.preventDefault();
-        if (description || file) {
-            const formData = new FormData();
-            formData.append("userId", userId);
-            formData.append("userEmail", userEmail);
-            formData.append("image", file);
-            formData.append("description", description);
+        const formData = new FormData();
+        formData.append("userId", userId);
+        formData.append("image", newFile);
+        formData.append("description", description);
+        await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
+        window.location.reload();
+    };
 
-            console.log(formData)
+    // const handleFormChange = async (e) => {
+    //     e.preventDefault();
+    //     if (description || file) {
+    //         const formData = new FormData();
+    //         formData.append("userId", userId);
+    //         formData.append("userEmail", userEmail);
+    //         formData.append("image", file);
+    //         formData.append("description", description);
 
-            await axios.put(`${process.env.REACT_APP_API_URL}api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
-            setDescription("");
-            setFile(null);
-            window.location.reload();
-        }
+    //         console.log(formData)
+
+    //         await axios.put(`http://localhost:3001/api/posts/${postId}`, formData, {headers: {Authorization: `Bearer ${token}`}});
+    //         setDescription("");
+    //         setFile(null);
+    //         window.location.reload();
+    //     }
         
-    }
+    // }
 
     if(!open) return null
     
@@ -81,7 +81,8 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
         <div onClick={onClose} className='overlay'>
             <div onClick={(e) => e.stopPropagation()} className="modalContainer createPost__options">
                 <button onClick={onClose} className="closeButton">X</button>
-                <form action="/posts" method="post" encType="multipart/form-data" className='modalContainer__form' onSubmit={handleFormChange}>
+                {/* <form action="/posts" method="post" encType="multipart/form-data" className='modalContainer__form' onSubmit={handleFormChange}> */}
+                <form action="/posts" method="post" encType="multipart/form-data" className='modalContainer__form'>
                         <textarea type="text"
                                 id="description"
                                 required
@@ -97,7 +98,7 @@ const ModifyPostModal = ({open, onClose, postId} ) => {
                                 Ajouter une image
                                 <p className="file-name"></p>
                             </label>
-                            <button className="createPost__options__submit" type="submit" onClick={onClose}>Mettre à jour l'article</button>   
+                            <button className="createPost__options__submit" type="button" onClick={handleFormChange}>Mettre à jour l'article</button>   
                         </div>
                 </form>
             </div>
